@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @ImmaGundam
+- 👋 Hi, My name is James. I also go by @ImmaGundam
 - 👀 I’m interested in ... advancing my abilities and knowledge.
 - 🌱 I’m currently learning ... HTML, CSS, JS, C+ & C Sharp
 - 💞️ I’m looking to collaborate on ... everything and anything. DM me.
