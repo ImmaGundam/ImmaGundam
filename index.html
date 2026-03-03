@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebGeeks IT</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="themes/rose-dark.css" id="theme-link">
+</head>
+<body>
+
+<div class="background"></div>
+<div class="waves">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<div class="glass-container">
+
+<header>
+<h1 class="brand-title">WebGeeks IT</h1>
+<p class="subtitle">Free Innovative Software & Security Tools</p>
+<div class="social-links">
+<a href="https://jamesdeitz.social" target="_blank">jamesdeitz.social</a>
+<a href="https://webgeeks.org" target="_blank">webgeeks.org</a>
+<a href="https://github.com/immagundam" target="_blank">github.com/immagundam</a>
+</div>
+</header>
+
+<section class="projects">
+
+<div class="project-card">
+<div class="image-wrapper"><img src="assets/systemshield.jpg"></div>
+<h3>SystemShield</h3>
+<p>Security-focused system protection tool for Windows environments.</p>
+<a class="github-link" href="https://github.com/ImmaGundam/WebGeeks-SystemShield" target="_blank">View on GitHub</a>
+</div>
+
+<div class="project-card">
+<div class="image-wrapper"><img src="assets/watchdog.png"></div>
+<h3>Windows 11 Update Tool (Watchdog)</h3>
+<p>Lightweight update management utility built to monitor Windows 11 updates.</p>
+<a class="github-link" href="https://github.com/immagundam/windows11-update-tool" target="_blank">View on GitHub</a>
+</div>
+
+<div class="project-card">
+<div class="image-wrapper"><img src="assets/simplealarmclock.png"></div>
+<h3>Simple Alarm Clock</h3>
+<p>Python alarm clock with themes and audio playback.</p>
+<a class="github-link" href="https://github.com/ImmaGundam/SimpleAlarmClock" target="_blank">View on GitHub</a>
+</div>
+
+<div class="project-card">
+<div class="image-wrapper"><img src="assets/pysnake.jpg"></div>
+<h3>PySnake</h3>
+<p>Classic Snake game recreated in Python.</p>
+<a class="github-link" href="https://github.com/ImmaGundam/PySnake" target="_blank">View on GitHub</a>
+</div>
+
+</section>
+
+<section class="themes">
+<button onclick="setTheme('light')">Light</button>
+<button onclick="setTheme('dark')">Dark</button>
+<button onclick="setTheme('rose-light')">Rose Light</button>
+<button onclick="setTheme('rose-dark')">Rose Dark</button>
+<button onclick="setTheme('morning')">Morning</button>
+<button onclick="setTheme('sunset')">Sunset</button>
+</section>
+
+<footer><p>© WebGeeks IT</p></footer>
+
+</div>
+
+<script>
+function setTheme(theme){
+document.getElementById('theme-link').href = "themes/" + theme + ".css";
+}
+</script>
+
+</body>
+</html>
