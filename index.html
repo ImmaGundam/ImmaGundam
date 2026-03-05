@@ -20,10 +20,16 @@
 
 <header class="site-header">
 
-  <div class="header-left">
+<div class="header-left">
+
+  <div class="brand-row">
+    <img src="assets/webgeeks-logo.png" class="brand-logo">
     <h1 class="brand-title">WebGeeks IT</h1>
-    <p class="subtitle">Free Software & Security Tools</p>
   </div>
+
+  <p class="subtitle">Free Software & Security Tools</p>
+
+</div>
 
   <div class="header-right">
 
@@ -83,12 +89,16 @@
 </section>
 
 <section class="themes">
+<button onclick="setTheme('standard-light')">Static Light</button>
+<button onclick="setTheme('standard-dark')">Static Dark</button>
 <button onclick="setTheme('light')">Light</button>
 <button onclick="setTheme('dark')">Dark</button>
 <button onclick="setTheme('rose-light')">Rose Light</button>
 <button onclick="setTheme('rose-dark')">Rose Dark</button>
 <button onclick="setTheme('morning')">Morning</button>
 <button onclick="setTheme('sunset')">Sunset</button>
+<button onclick="setTheme('cyberpunk')">Cyberpunk</button>
+
 </section>
 
 <footer><p>© WebGeeks.org</p></footer>
