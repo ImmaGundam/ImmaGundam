@@ -11,7 +11,7 @@ html, body {
   padding: 0;
   height: 100%;
   overflow-x: hidden;
-  font-size: 14px; /* global scale-down for tighter fit */
+  font-size: 14px;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
   color: var(--text);
 }
 
-/* ---- Background shell (themed by each CSS file) ---- */
+/* ---- Background shell ---- */
 .background {
   position: fixed;
   inset: 0;
@@ -44,8 +44,8 @@ body {
 .glass-container {
   width: 94%;
   max-width: 1250px;
-  margin: 16px auto;
-  padding: 20px 24px;
+  margin: 24px auto;
+  padding: 20px 24px 28px;
   border-radius: 18px;
   backdrop-filter: blur(28px) saturate(170%);
   background: rgba(255,255,255,0.16);
@@ -72,7 +72,7 @@ body {
 
 .brand-logo {
   width: 100%;
-  max-width: 90px;
+  max-width: 72px;
   height: auto;
 }
 
@@ -87,8 +87,9 @@ body {
 }
 
 .subtitle {
-  margin: 6px 0 6px 10px;
+  margin: 4px 0 0 10px;
   font-size: 0.88rem;
+  letter-spacing: 0.01em;
 }
 
 /* ---- Social icon links ---- */
@@ -116,12 +117,80 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
+/* ---- Portfolio button ---- */
+.portfolio-btn {
+  width: auto;
+  padding: 0 12px;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.portfolio-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+.portfolio-label   { line-height: 1; }
+
+/* ---- Tab navigation ---- */
+.tab-nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+
+.tab-btn {
+  padding: 7px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.10);
+  color: var(--text);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .84rem;
+  font-weight: 600;
+  transition: .2s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(255,255,255,0.20);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: rgba(255,255,255,0.24);
+  border-color: rgba(255,255,255,0.40);
+  color: var(--accent);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.20);
+}
+
+/* ---- Tab pages ---- */
+.tab-page        { display: none; }
+.tab-page.active { display: block; }
+
+
+.section-heading {
+  margin-top: 24px;
+  margin-bottom: -4px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  opacity: .55;
+}
+
 /* ---- Projects grid ---- */
 .projects {
   display: grid;
   gap: 14px;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  margin-top: 20px;
+  margin-top: 24px;
+}
+
+.highlight-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .project-card {
@@ -139,12 +208,22 @@ body {
   background: rgba(255,255,255,0.20);
 }
 
+.project-card.featured {
+  border: 1px solid rgba(255,255,255,0.22);
+}
+
+/* ---- Image wrapper ---- */
 .image-wrapper {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 10px;
   margin-bottom: 8px;
+}
+
+/* 30% height reduction: 9/16 * 0.7 ≈ 6.3/16, use clean ratio 8/3 ≈ 2.67 */
+.image-wrapper.sm {
+  aspect-ratio: 8 / 3;
 }
 
 .image-wrapper img {
@@ -153,9 +232,119 @@ body {
   object-fit: cover;
 }
 
-.project-card h3 { margin: 4px 0; font-size: 1rem; }
-.project-card p  { font-size: .86rem; line-height: 1.4; margin: 4px 0 8px; }
+.image-wrapper.icon-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+}
 
+.image-wrapper.icon-placeholder svg {
+  width: 42px;
+  height: 42px;
+  opacity: .45;
+}
+
+.project-card h3 { margin: 4px 0; font-size: 1rem; }
+.project-card p  { font-size: .86rem; line-height: 1.4; margin: 4px 0 6px; }
+
+/* ---- Tech meta block (platform label row / stack chip row) ---- */
+.tech-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 4px 0 10px;
+}
+
+.tech-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* "Platform" label — sits inline before the chip, no fixed width */
+.tech-row-label {
+  font-size: .60rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .40;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-right: 2px;
+}
+
+/* Hairline rule between platform and stack rows */
+.tech-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.14);
+  margin: 1px 0;
+}
+
+/* ---- Coming Soon card ---- */
+.project-card.coming-soon {
+  opacity: 0.52;
+  border: 1px dashed rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.06);
+}
+
+.project-card.coming-soon:hover {
+  opacity: 0.72;
+  background: rgba(255,255,255,0.10);
+}
+
+.image-wrapper.coming-soon-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  aspect-ratio: 8 / 3;
+}
+
+.image-wrapper.coming-soon-img svg {
+  width: 38px;
+  height: 38px;
+  opacity: .30;
+}
+
+/* Stack group separator */
+.tech-sep {
+  font-size: .72rem;
+  opacity: 0.30;
+  padding: 0 1px;
+  align-self: center;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Individual chips */
+.tech-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px 3px 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.16);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  opacity: 0.65;
+  white-space: nowrap;
+  transition: opacity .15s ease;
+}
+
+.tech-chip:hover { opacity: 1; }
+
+.tech-chip svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* ---- Card links ---- */
 .card-links {
   display: flex;
   gap: 14px;
@@ -173,9 +362,75 @@ body {
 
 .github-link:hover { transform: translateY(-2px); }
 
+/* ---- License list ---- */
+.license-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.license-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+  text-decoration: none;
+  color: var(--text);
+  transition: .2s ease;
+}
+
+.license-item:hover {
+  background: rgba(255,255,255,0.20);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+}
+
+.license-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.10);
+  flex-shrink: 0;
+}
+
+.license-icon svg { width: 16px; height: 16px; }
+
+.license-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.license-name { font-size: .90rem; font-weight: 600; }
+
+.license-url {
+  font-size: .74rem;
+  opacity: .55;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.license-arrow {
+  font-size: 1rem;
+  opacity: .45;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
 /* ---- Theme switcher ---- */
 .themes {
-  margin-top: 22px;
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -226,7 +481,7 @@ body {
 
 /* ---- Footer ---- */
 footer {
-  margin-top: 20px;
+  margin-top: 28px;
   font-size: .76rem;
   opacity: .8;
   text-align: center;
@@ -234,26 +489,35 @@ footer {
 
 /* ===== Responsive ===== */
 @media (max-width: 600px) {
-  .glass-container    { width: 92%; padding: 10px 12px; }
-  .projects           { grid-template-columns: 1fr; gap: 10px; }
-  .project-card       { padding: 8px; border-radius: 12px; }
-  .image-wrapper      { height: 110px; aspect-ratio: unset; margin-bottom: 6px; }
-  .brand-title        { font-size: clamp(1.5rem, 6vw, 1.9rem); }
-  .icon-link          { width: 30px; height: 30px; font-size: 13px; }
-  .icon-link svg      { width: 15px; height: 15px; }
-  .subtitle           { font-size: .88rem; }
-  .themes             { gap: 8px; }
-  .theme-group        { gap: 5px; }
+  .glass-container  { width: 92%; padding: 16px 14px 22px; }
+  .projects         { grid-template-columns: 1fr; gap: 10px; margin-top: 18px; }
+  .project-card     { padding: 8px; border-radius: 12px; }
+  .image-wrapper    { height: 110px; aspect-ratio: unset; margin-bottom: 6px; }
+  .image-wrapper.sm { height: 77px; }
+  .brand-title      { font-size: clamp(1.5rem, 6vw, 1.9rem); }
+  .icon-link        { width: 30px; height: 30px; font-size: 13px; }
+  .icon-link svg    { width: 15px; height: 15px; }
+  .portfolio-btn    { padding: 0 10px; font-size: .76rem; }
+  .subtitle         { font-size: .88rem; }
+  .themes           { gap: 8px; margin-top: 22px; }
+  .theme-group      { gap: 5px; }
+  .tab-nav          { gap: 6px; flex-wrap: wrap; margin-top: 10px; padding-bottom: 10px; }
+  .tab-btn          { padding: 5px 12px; font-size: .78rem; }
+  .tech-chip        { font-size: .64rem; padding: 2px 6px 2px 5px; }
+  .tech-row-label   { width: 30px; font-size: .56rem; }
 }
 
 @media (max-width: 520px) {
-  .glass-container    { padding-top: 18px; }
-  .header-left        { width: 100%; text-align: center; }
+  .glass-container  { padding-top: 20px; }
+  .header-left      { width: 100%; text-align: center; }
   .brand-title,
-  .subtitle           { text-align: center; }
-  .site-header        { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .header-right       { width: 100%; justify-content: center; margin-top: 6px; }
-  .projects           { margin-top: 14px; }
-  .theme-divider      { display: none; }
-  .themes             { gap: 6px; }
+  .subtitle         { text-align: center; }
+  .site-header      { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .header-right     { width: 100%; justify-content: center; margin-top: 6px; }
+  .projects         { margin-top: 14px; }
+  .theme-divider    { display: none; }
+  .themes           { gap: 6px; }
+  .portfolio-label  { display: none; }
+  .portfolio-btn    { width: 30px; padding: 0; }
+  .license-url      { display: none; }
 }
