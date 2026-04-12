@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebGeeks IT - Code. Create. Play.</title>
+  <title>WebGeeks IT</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="base.css">
-  <link rel="stylesheet" href="themes/standard-light.css" id="theme-link">
+  <link rel="stylesheet" href="themes/rose-dark.css" id="theme-link">
 
   <!-- Reusable SVG icon symbols -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -419,26 +419,28 @@
 
     <div class="theme-group">
       <span class="theme-label">Static</span>
-      <button onclick="setTheme('standard-light')">Light</button>
-      <button onclick="setTheme('standard-dark')">Dark</button>
+      <div class="theme-btns">
+        <button onclick="setTheme('standard-light')">Light</button>
+        <button onclick="setTheme('standard-dark')">Dark</button>
+      </div>
     </div>
-
-    <div class="theme-divider"></div>
 
     <div class="theme-group">
       <span class="theme-label">Animated</span>
-      <button onclick="setTheme('light')">Light</button>
-      <button onclick="setTheme('dark')">Dark</button>
-      <button onclick="setTheme('rose-light')">Rose Light</button>
-      <button onclick="setTheme('rose-dark')">Rose Dark</button>
-      <button onclick="setTheme('morning')">Morning</button>
-      <button onclick="setTheme('sunset')">Sunset</button>
-      <button onclick="setTheme('cyberpunk')">Cyberpunk</button>
+      <div class="theme-btns">
+        <button onclick="setTheme('light')">Light</button>
+        <button onclick="setTheme('dark')">Dark</button>
+        <button onclick="setTheme('rose-light')">Rose Light</button>
+        <button onclick="setTheme('rose-dark')">Rose Dark</button>
+        <button onclick="setTheme('morning')">Morning</button>
+        <button onclick="setTheme('sunset')">Sunset</button>
+        <button onclick="setTheme('cyberpunk')">Cyberpunk</button>
+      </div>
     </div>
 
   </section>
 
-  <footer><p>© WebGeeks.org</p></footer>
+  <footer><p>© WebGeeks.org · <a href="https://jamesdeitz.social" target="_blank" class="footer-link">James Deitz</a></p></footer>
 
 </div>
 

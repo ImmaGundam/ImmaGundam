@@ -62,7 +62,7 @@ body {
 }
 
 .header-left  { display: flex; flex-direction: column; }
-.header-right { display: flex; gap: 12px; align-items: center; }
+.header-right { display: flex; gap: 12px; align-items: center; margin-left: auto; }
 
 .brand-row {
   display: flex;
@@ -434,31 +434,33 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
+  gap: 18px 28px;
 }
 
 .theme-group {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .theme-label {
   font-size: .68rem;
-  opacity: .65;
+  opacity: .55;
   text-transform: uppercase;
-  letter-spacing: .07em;
-  padding-right: 2px;
+  letter-spacing: .09em;
+  font-weight: 700;
   white-space: nowrap;
 }
 
-.theme-divider {
-  width: 1px;
-  height: 26px;
-  background: rgba(255,255,255,0.30);
-  align-self: center;
+/* vertical divider no longer used — kept for safety */
+.theme-divider { display: none; }
+
+.theme-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
 }
 
 .themes button {
@@ -487,7 +489,28 @@ footer {
   text-align: center;
 }
 
+.footer-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity .15s ease;
+}
+
+.footer-link:hover { opacity: 0.75; }
+
+/* Hide platform row label at very narrow widths — chips are self-descriptive */
+@media (max-width: 420px) {
+  .tech-row-label { display: none; }
+}
+
 /* ===== Responsive ===== */
+
+/* --- 768px: start compressing the icon row gap --- */
+@media (max-width: 768px) {
+  .header-right     { gap: 8px; }
+}
+
+/* --- 600px: collapse portfolio to icon-only, shrink icons --- */
 @media (max-width: 600px) {
   .glass-container  { width: 92%; padding: 16px 14px 22px; }
   .projects         { grid-template-columns: 1fr; gap: 10px; margin-top: 18px; }
@@ -495,29 +518,44 @@ footer {
   .image-wrapper    { height: 110px; aspect-ratio: unset; margin-bottom: 6px; }
   .image-wrapper.sm { height: 77px; }
   .brand-title      { font-size: clamp(1.5rem, 6vw, 1.9rem); }
-  .icon-link        { width: 30px; height: 30px; font-size: 13px; }
+  .icon-link        { width: 32px; height: 32px; font-size: 13px; }
   .icon-link svg    { width: 15px; height: 15px; }
-  .portfolio-btn    { padding: 0 10px; font-size: .76rem; }
+  .portfolio-label  { display: none; }
+  .portfolio-btn    { width: 32px; padding: 0; }
+  .header-right     { gap: 7px; flex-wrap: nowrap; } /* stays right-aligned */
   .subtitle         { font-size: .88rem; }
   .themes           { gap: 8px; margin-top: 22px; }
   .theme-group      { gap: 5px; }
   .tab-nav          { gap: 6px; flex-wrap: wrap; margin-top: 10px; padding-bottom: 10px; }
   .tab-btn          { padding: 5px 12px; font-size: .78rem; }
   .tech-chip        { font-size: .64rem; padding: 2px 6px 2px 5px; }
-  .tech-row-label   { width: 30px; font-size: .56rem; }
+  .tech-row-label   { font-size: .56rem; }
 }
 
-@media (max-width: 520px) {
-  .glass-container  { padding-top: 20px; }
-  .header-left      { width: 100%; text-align: center; }
-  .brand-title,
-  .subtitle         { text-align: center; }
-  .site-header      { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .header-right     { width: 100%; justify-content: center; margin-top: 6px; }
+/* --- 560px: stack header, centre brand + icons + tabs --- */
+@media (max-width: 560px) {
+  .glass-container  { padding-top: 18px; }
+  .site-header      { flex-direction: column; align-items: flex-start; gap: 6px; }
+  /* Brand block centres */
+  .header-left      { width: 100%; align-items: center; }
+  .brand-row        { justify-content: center; }
+  .brand-title      { text-align: center; }
+  .subtitle         { text-align: center; margin-left: 0; }
+  /* Icons centred to match centred brand */
+  .header-right     { width: 100%; justify-content: center; margin-left: 0; gap: 6px; flex-wrap: nowrap; }
+  .icon-link        { width: 28px; height: 28px; font-size: 12px; border-radius: 8px; }
+  .icon-link svg    { width: 13px; height: 13px; }
+  .portfolio-btn    { width: 28px; }
+  /* Tab nav centres at mobile */
+  .tab-nav          { justify-content: center; }
   .projects         { margin-top: 14px; }
   .theme-divider    { display: none; }
   .themes           { gap: 6px; }
-  .portfolio-label  { display: none; }
-  .portfolio-btn    { width: 30px; padding: 0; }
   .license-url      { display: none; }
+}
+
+/* --- 380px: squeeze tabs to wrap neatly --- */
+@media (max-width: 380px) {
+  .tab-btn          { padding: 4px 10px; font-size: .74rem; }
+  .glass-container  { padding: 14px 10px 18px; }
 }
