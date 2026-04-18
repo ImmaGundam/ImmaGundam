@@ -195,6 +195,7 @@
     .window {
       width: 100%;
       max-width: 900px;
+      overflow-x: hidden;
       background: var(--panel);
       border: 1px solid var(--border);
       box-shadow: var(--window-shadow);
@@ -233,7 +234,7 @@
     .dot svg { width: 9px; height: 9px; }
 
     .titlebar-label {
-      flex: 1 1 200px;
+      flex: 0 1 auto;
       text-align: center;
       font-size: 0.72rem;
       color: var(--text-muted);
@@ -247,16 +248,24 @@
     .theme-picker {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 5px;
+      flex-wrap: nowrap;
       margin-left: auto;
+      min-width: 0;
+      overflow-x: clip;
+      padding: 2px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
+    .theme-picker::-webkit-scrollbar { display: none; }
 
     .theme-label {
-      font-size: 0.64rem;
-      letter-spacing: 0.18em;
+      font-size: 0.60rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .theme-btn {
@@ -265,11 +274,13 @@
       background: var(--theme-chip-bg);
       color: var(--text-muted);
       font: inherit;
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
       border-radius: 999px;
-      padding: 6px 10px;
+      padding: 4px 9px;
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
       transition: border-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
     }
 
@@ -603,6 +614,7 @@
       background: var(--border);
       opacity: 0.5;
       margin: 0 2px;
+      flex-shrink: 0;
     }
     .bio-stack-icon {
       display: flex;
@@ -655,7 +667,7 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin: 1.4rem 0 0.5rem 1.4rem;
+      margin: 0.6rem 0 0.5rem 1.4rem;
     }
 
     /* ── Trick chat bubbles ── */
@@ -740,16 +752,35 @@
     .chat-bubble-close:hover { opacity: 1; }
     @media (max-width: 700px) {
       .titlebar-label { order: 2; text-align: left; width: 100%; }
-      .theme-picker { order: 3; margin-left: 0; width: 100%; }
+      .theme-picker { order: 3; margin-left: 0; max-width: 100%; }
     }
 
     @media (max-width: 500px) {
-      .term-body { padding: 1rem 1rem 1.5rem; }
-      .logo-row { align-items: flex-start; }
-      .logo-text h1 { font-size: 1.8rem; }
-      .link-url { display: none; }
-      .link-label { min-width: unset; }
-      .statusbar { justify-content: flex-start; }
+      .term-body          { padding: 0.8rem 0.9rem 1.2rem; }
+      .logo-row           { align-items: flex-start; }
+      .logo-text h1       { font-size: 1.8rem; }
+      .link-url           { display: none; }
+      .link-label         { min-width: unset; }
+      .statusbar          { justify-content: flex-start; }
+      /* Remove all left indents that cause rightward shift */
+      .output-block       { padding-left: 0.6rem; }
+      .releases-grid      { margin-left: 0.4rem; }
+      .section-label      { margin-left: 0.4rem; }
+      .bio-stack          { margin-left: 0.4rem; }
+      /* Prevent rel-row1 from overflowing */
+      .rel-row1           { flex-wrap: wrap; gap: 6px 8px; }
+      .rel-name           { font-size: 0.78rem; flex: 1 1 100%; }
+      .rel-ver            { font-size: 0.65rem; }
+      .rel-desc           { font-size: 0.68rem; }
+      .rel-date           { font-size: 0.60rem; }
+      /* Bio stack wraps cleanly */
+      .bio-stack          { gap: 10px 12px; }
+      .bio-stack-divider  {
+        width: 100%;
+        height: 1px;
+        align-self: auto;
+        margin: 2px 0;
+      }
     }
   </style>
 </head>
@@ -977,7 +1008,7 @@
     </div>
     <div class="rel-row2">
       <span class="rel-desc">Windows security scanner · Audit reports · System &amp; Network analysis</span>
-      <span class="rel-date">Python · HTML · CSS · JavaScript · C#</span>
+      <span class="rel-date">Python · HTML · CSS · JavaScript · PowerShell</span>
     </div>
     <div class="rel-platforms">
       <span class="rel-chip"><svg><use href="#p-source"/></svg>Source</span><span class="rel-chip"><svg><use href="#p-windows"/></svg>Windows</span>
@@ -1024,7 +1055,7 @@
     </div>
     <div class="rel-row2">
       <span class="rel-desc">Monitor Windows Update &amp; Defender Services</span>
-      <span class="rel-date">Python · HTML · CSS · C#</span>
+      <span class="rel-date">Python · HTML · CSS · PowerShell</span>
     </div>
     <div class="rel-platforms">
       <span class="rel-chip"><svg><use href="#p-source"/></svg>Source</span><span class="rel-chip"><svg><use href="#p-windows"/></svg>Windows</span>
