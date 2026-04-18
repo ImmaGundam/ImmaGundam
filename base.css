@@ -190,7 +190,7 @@ body {
 }
 
 .highlight-grid {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 .project-card {
@@ -223,7 +223,7 @@ body {
 
 /* 30% height reduction: 9/16 * 0.7 ≈ 6.3/16, use clean ratio 8/3 ≈ 2.67 */
 .image-wrapper.sm {
-  aspect-ratio: 8 / 3;
+  aspect-ratio: 3 / 1;
 }
 
 .image-wrapper img {
@@ -300,7 +300,7 @@ body {
   align-items: center;
   justify-content: center;
   background: rgba(255,255,255,0.05);
-  aspect-ratio: 8 / 3;
+  aspect-ratio: 3 / 1;
 }
 
 .image-wrapper.coming-soon-img svg {
@@ -490,13 +490,16 @@ footer {
 }
 
 .footer-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgba(128,128,128,0.35);
+  text-underline-offset: 2px;
+  font-weight: 500;
+  opacity: 0.72;
   transition: opacity .15s ease;
 }
 
-.footer-link:hover { opacity: 0.75; }
+.footer-link:hover { opacity: 1; }
 
 /* Hide platform row label at very narrow widths — chips are self-descriptive */
 @media (max-width: 420px) {
