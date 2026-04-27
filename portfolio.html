@@ -252,18 +252,12 @@
       flex-wrap: nowrap;
       margin-left: auto;
       min-width: 0;
-      max-width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding: 2px 0 6px;
-      scrollbar-width: thin;
-      -webkit-overflow-scrolling: touch;
+      overflow-x: clip;
+      padding: 2px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-    .theme-picker::-webkit-scrollbar { height: 5px; }
-    .theme-picker::-webkit-scrollbar-thumb {
-      background: color-mix(in srgb, var(--accent) 35%, transparent);
-      border-radius: 999px;
-    }
+    .theme-picker::-webkit-scrollbar { display: none; }
 
     .theme-label {
       font-size: 0.60rem;
@@ -757,41 +751,8 @@
     }
     .chat-bubble-close:hover { opacity: 1; }
     @media (max-width: 700px) {
-      .titlebar { align-items: flex-start; }
-
-      .titlebar-label {
-        order: 2;
-        text-align: left;
-        width: 100%;
-      }
-
-      .theme-picker {
-        order: 3;
-        width: 100%;
-        margin-left: 0;
-        max-width: 100%;
-        overflow-x: auto;
-        padding-bottom: 7px;
-      }
-
-      .theme-label {
-        position: sticky;
-        left: 0;
-        z-index: 1;
-        background: var(--panel-top);
-        padding-right: 6px;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .theme-btn {
-        font-size: 0.58rem;
-        padding: 4px 7px;
-      }
-
-      .theme-label {
-        font-size: 0.56rem;
-      }
+      .titlebar-label { order: 2; text-align: left; width: 100%; }
+      .theme-picker { order: 3; margin-left: 0; max-width: 100%; }
     }
 
     @media (max-width: 500px) {
@@ -1010,10 +971,10 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <a class="link-item" href="https://store.steampowered.com/search/?publisher=WebGeeks%20Labs" target="_blank" rel="noopener">
+        <a class="link-item" href="https://immagundam.itch.io/" target="_blank" rel="noopener">
           <span class="link-icon">🎮</span>
           <span class="link-label">WebGeeks Labs</span>
-          <span class="link-url">Steam Store</span>
+          <span class="link-url">immagundam.itch.io</span>
           <span class="link-arrow">→</span>
         </a>
 
@@ -1039,6 +1000,21 @@
       <div class="section-label">Projects</div>
             <div class="releases-grid boot-line">
 
+  <a class="release-card" href="https://systemshield.net/seo-tool/" target="_blank">
+    <div class="rel-row1">
+      <span class="rel-badge ext">Web App</span>
+      <span class="rel-name">SEO Web Tool</span>
+      <span class="rel-ver">v1.0</span>
+    </div>
+    <div class="rel-row2">
+      <span class="rel-desc">Free SEO audit tool - locates technical issues to help fix SEO ranking.</span>
+      <span class="rel-date">Python · Flask · HTML · CSS · JavaScript</span>
+    </div>
+    <div class="rel-platforms">
+      <span class="rel-chip"><svg><use href="#p-web"/></svg>Web</span><span class="rel-chip"><svg><use href="#t-python"/></svg>Python</span>
+    </div>
+  </a>
+
   <a class="release-card" href="https://github.com/ImmaGundam/WebGeeks-SystemShield/releases" target="_blank">
     <div class="rel-row1">
       <span class="rel-badge gh">Utility</span>
@@ -1061,7 +1037,7 @@
       <span class="rel-ver">v1</span>
     </div>
     <div class="rel-row2">
-      <span class="rel-desc">Portable stylized and customizable desktop alarm</span>
+      <span class="rel-desc">SimpleAlarmClock.com - Free stylized and customizable alarm clock. Available online or as an app.</span>
       <span class="rel-date">HTML · CSS · JavaScript</span>
     </div>
     <div class="rel-platforms">
