@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en" data-theme="light"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>James Deitz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0a0f0a;
       --bg-elevated: #0f160f;
       --panel: #131a13;
       --panel-top: #172017;
-      --border: #1a2e1a;
+      --border: #244224;
       --text: #00cc35;
       --text-dim: #00f045;
-      --text-soft: #8aab8a;
-      --text-muted: #3a4a3a;
+      --text-soft: #a7caa7;
+      --text-muted: #718871;
       --accent: #00e5ff;
       --accent-2: #ffb000;
       --danger: #ff3131;
@@ -146,7 +148,7 @@
         radial-gradient(circle at 86% 14%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 18%),
         linear-gradient(180deg, var(--bg-elevated), var(--bg));
       color: var(--text);
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Share Tech Mono', Consolas, 'Lucida Console', 'Courier New', monospace;
       overflow-x: hidden;
     }
 
@@ -316,7 +318,7 @@
     }
 
     .logo-text h1 {
-      font-family: 'VT323', monospace;
+      font-family: 'VT323', 'Share Tech Mono', Consolas, 'Lucida Console', 'Courier New', monospace;
       font-size: 2.4rem;
       color: var(--text);
       text-shadow: 0 0 8px var(--glow), 0 0 20px color-mix(in srgb, var(--accent) 18%, transparent);
@@ -514,6 +516,40 @@
       text-decoration: none;
       display: block;
       border-radius: 8px;
+      position: relative;
+    }
+
+    .release-card.has-domain {
+      padding-bottom: 0.55rem;
+    }
+
+    .rel-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 5px;
+      min-width: 0;
+    }
+
+    .rel-card-footer .rel-platforms {
+      margin-top: 0;
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      flex-wrap: nowrap;
+    }
+
+    .rel-domain {
+      margin-left: auto;
+      font-size: 0.64rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      opacity: 0.72;
+      text-decoration: none;
+      pointer-events: none;
+      white-space: nowrap;
+      flex: 0 0 auto;
     }
 
     .release-card:hover {
@@ -670,6 +706,10 @@
       margin: 0.6rem 0 0.5rem 1.4rem;
     }
 
+    .releases-grid > .section-label {
+      margin-left: 0;
+    }
+
     /* ── Trick chat bubbles ── */
     .chat-stack {
       position: fixed;
@@ -750,6 +790,27 @@
       transition: opacity .15s;
     }
     .chat-bubble-close:hover { opacity: 1; }
+
+
+    /* Terminal theme readability boost */
+    :root:not([data-theme]) .bio-stack-label,
+    :root:not([data-theme]) .link-url,
+    :root:not([data-theme]) .rel-date,
+    :root:not([data-theme]) .section-label,
+    :root:not([data-theme]) .statusbar,
+    :root:not([data-theme]) .statusbar-link,
+    :root:not([data-theme]) .statusbar-email,
+    :root:not([data-theme]) .titlebar-label,
+    :root:not([data-theme]) .theme-label {
+      color: var(--text-muted);
+      opacity: 0.92;
+    }
+
+    :root:not([data-theme]) .bio-stack-icon { opacity: 0.62; }
+    :root:not([data-theme]) .bio-stack-icon:hover { opacity: 0.95; }
+    :root:not([data-theme]) .link-icon { opacity: 0.62; }
+    :root:not([data-theme]) .link-item:hover .link-icon { opacity: 0.95; }
+
     @media (max-width: 700px) {
       .titlebar-label { order: 2; text-align: left; width: 100%; }
       .theme-picker { order: 3; margin-left: 0; max-width: 100%; }
@@ -773,6 +834,10 @@
       .rel-ver            { font-size: 0.65rem; }
       .rel-desc           { font-size: 0.68rem; }
       .rel-date           { font-size: 0.60rem; }
+      .rel-card-footer    { gap: 7px; }
+      .rel-card-footer .rel-platforms { flex-wrap: nowrap; overflow: hidden; }
+      .rel-chip           { font-size: 0.56rem; padding: 2px 5px 2px 4px; }
+      .rel-domain         { font-size: 0.56rem; }
       /* Bio stack wraps cleanly */
       .bio-stack          { gap: 10px 12px; }
       .bio-stack-divider  {
@@ -789,96 +854,95 @@
   <!-- Icon sprite for project platform/stack chips -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
     <symbol id="p-windows" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M0 3.449 9.75 2.1v9.451H0zm10.949-9.602L24 0v11.4H10.949zM0 12.6h9.75v9.451L0 20.699zm10.949 0H24V24l-12.951-1.801z"/>
+      <path fill="currentColor" d="M0 3.449 9.75 2.1v9.451H0zm10.949-9.602L24 0v11.4H10.949zM0 12.6h9.75v9.451L0 20.699zm10.949 0H24V24l-12.951-1.801z"></path>
     </symbol>
     <symbol id="p-web" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <ellipse cx="12" cy="12" rx="4.2" ry="10" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.7"/>
-      <line x1="4.5" y1="6.5" x2="19.5" y2="6.5" stroke="currentColor" stroke-width="1.2"/>
-      <line x1="4.5" y1="17.5" x2="19.5" y2="17.5" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"></circle>
+      <ellipse cx="12" cy="12" rx="4.2" ry="10" fill="none" stroke="currentColor" stroke-width="1.7"></ellipse>
+      <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.7"></line>
+      <line x1="4.5" y1="6.5" x2="19.5" y2="6.5" stroke="currentColor" stroke-width="1.2"></line>
+      <line x1="4.5" y1="17.5" x2="19.5" y2="17.5" stroke="currentColor" stroke-width="1.2"></line>
     </symbol>
     <symbol id="p-source" viewBox="0 0 24 24">
-      <polyline points="16 18 22 12 16 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <polyline points="8 6 2 12 8 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="16 18 22 12 16 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+      <polyline points="8 6 2 12 8 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
     </symbol>
 
     <symbol id="t-python" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.963 3.403 5.963h2.031v-2.87s-.109-3.404 3.345-3.404h5.762s3.236.052 3.236-3.127V3.124S18.28 0 11.914 0zm-3.2 1.804a1.043 1.043 0 1 1-.001 2.085 1.043 1.043 0 0 1 .001-2.085z"/>
-      <path fill="currentColor" d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752h-5.814v-.826H20.1S24 18.211 24 12.031c0-6.18-3.403-5.963-3.403-5.963h-2.031v2.87s.109 3.404-3.345 3.404H9.459s-3.236-.052-3.236 3.127v5.407S5.72 24 12.086 24zm3.2-1.804a1.043 1.043 0 1 1 .001-2.085 1.043 1.043 0 0 1-.001 2.085z"/>
+      <path fill="currentColor" d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.963 3.403 5.963h2.031v-2.87s-.109-3.404 3.345-3.404h5.762s3.236.052 3.236-3.127V3.124S18.28 0 11.914 0zm-3.2 1.804a1.043 1.043 0 1 1-.001 2.085 1.043 1.043 0 0 1 .001-2.085z"></path>
+      <path fill="currentColor" d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752h-5.814v-.826H20.1S24 18.211 24 12.031c0-6.18-3.403-5.963-3.403-5.963h-2.031v2.87s.109 3.404-3.345 3.404H9.459s-3.236-.052-3.236 3.127v5.407S5.72 24 12.086 24zm3.2-1.804a1.043 1.043 0 1 1 .001-2.085 1.043 1.043 0 0 1-.001 2.085z"></path>
     </symbol>
     <symbol id="t-html" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/>
+      <path fill="currentColor" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"></path>
     </symbol>
     <symbol id="t-css" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"/>
+      <path fill="currentColor" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"></path>
     </symbol>
     <symbol id="t-js" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.755-1.125 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/>
+      <path fill="currentColor" d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.755-1.125 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"></path>
     </symbol>
     <symbol id="t-csharp" viewBox="0 0 24 24">
       <!-- C# — stylised C with hash mark -->
-      <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
-        d="M18 8.5A7 7 0 1 0 18 15.5"/>
-      <line x1="15" y1="9"  x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="19" y1="9"  x2="19" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="13.5" y1="11" x2="20.5" y2="11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-      <line x1="13.5" y1="13" x2="20.5" y2="13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M18 8.5A7 7 0 1 0 18 15.5"></path>
+      <line x1="15" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line>
+      <line x1="19" y1="9" x2="19" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line>
+      <line x1="13.5" y1="11" x2="20.5" y2="11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+      <line x1="13.5" y1="13" x2="20.5" y2="13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
     </symbol>
     <symbol id="t-powershell" viewBox="0 0 24 24">
-      <rect x="2" y="3" width="20" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <polyline points="7 9.5 11 12.5 7 15.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-      <line x1="13" y1="15.5" x2="18" y2="15.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      <rect x="2" y="3" width="20" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+      <polyline points="7 9.5 11 12.5 7 15.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></polyline>
+      <line x1="13" y1="15.5" x2="18" y2="15.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line>
     </symbol>
     <symbol id="t-nodejs" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M12 1.85 2.5 7.28v9.44L12 22.15l9.5-5.43V7.28L12 1.85zm0 1.74 7.75 4.43v8.96L12 20.41l-7.75-4.43V8.02L12 3.59zM9.5 8.5v7l1.5-.87V12l3 1.73 1.5-.87-3-1.73V9.37L9.5 8.5z"/>
+      <path fill="currentColor" d="M12 1.85 2.5 7.28v9.44L12 22.15l9.5-5.43V7.28L12 1.85zm0 1.74 7.75 4.43v8.96L12 20.41l-7.75-4.43V8.02L12 3.59zM9.5 8.5v7l1.5-.87V12l3 1.73 1.5-.87-3-1.73V9.37L9.5 8.5z"></path>
     </symbol>
     <symbol id="t-electron" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="2.2" fill="currentColor"/>
-      <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(60 12 12)"/>
-      <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(-60 12 12)"/>
+      <circle cx="12" cy="12" r="2.2" fill="currentColor"></circle>
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="currentColor" stroke-width="1.5"></ellipse>
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(60 12 12)"></ellipse>
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(-60 12 12)"></ellipse>
     </symbol>
 
     <!-- OS icons -->
     <symbol id="t-linux" viewBox="0 0 24 24">
       <!-- Tux outline — simple geometric penguin -->
-      <ellipse cx="12" cy="6" rx="4" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <ellipse cx="12" cy="15" rx="5.5" ry="6" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <ellipse cx="12" cy="15.5" rx="3" ry="3.5" fill="none" stroke="currentColor" stroke-width="1.1"/>
-      <circle cx="10.3" cy="5.2" r=".7" fill="currentColor"/>
-      <circle cx="13.7" cy="5.2" r=".7" fill="currentColor"/>
-      <path d="M10.8 7.2 q1.2.8 2.4 0" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-      <path d="M8.5 20.5 q-1.2 1 -2 .5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-      <path d="M15.5 20.5 q1.2 1 2 .5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <ellipse cx="12" cy="6" rx="4" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.6"></ellipse>
+      <ellipse cx="12" cy="15" rx="5.5" ry="6" fill="none" stroke="currentColor" stroke-width="1.6"></ellipse>
+      <ellipse cx="12" cy="15.5" rx="3" ry="3.5" fill="none" stroke="currentColor" stroke-width="1.1"></ellipse>
+      <circle cx="10.3" cy="5.2" r=".7" fill="currentColor"></circle>
+      <circle cx="13.7" cy="5.2" r=".7" fill="currentColor"></circle>
+      <path d="M10.8 7.2 q1.2.8 2.4 0" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path>
+      <path d="M8.5 20.5 q-1.2 1 -2 .5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+      <path d="M15.5 20.5 q1.2 1 2 .5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
     </symbol>
     <symbol id="t-windows" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M0 3.449 9.75 2.1v9.451H0zm10.949-9.602L24 0v11.4H10.949zM0 12.6h9.75v9.451L0 20.699zm10.949 0H24V24l-12.951-1.801z"/>
+      <path fill="currentColor" d="M0 3.449 9.75 2.1v9.451H0zm10.949-9.602L24 0v11.4H10.949zM0 12.6h9.75v9.451L0 20.699zm10.949 0H24V24l-12.951-1.801z"></path>
     </symbol>
     <symbol id="t-mac" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.54 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+      <path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.54 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"></path>
     </symbol>
     <symbol id="t-android" viewBox="0 0 24 24">
       <!-- Android robot outline -->
-      <rect x="4" y="9" width="16" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <line x1="8" y1="19" x2="8" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      <line x1="16" y1="19" x2="16" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      <line x1="1.5" y1="11" x2="1.5" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      <line x1="22.5" y1="11" x2="22.5" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      <circle cx="9" cy="13.5" r="1" fill="currentColor"/>
-      <circle cx="15" cy="13.5" r="1" fill="currentColor"/>
-      <path d="M7 9 L5.5 5.5 M17 9 L18.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="5" y1="5" x2="19" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="4" y="9" width="16" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+      <line x1="8" y1="19" x2="8" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+      <line x1="16" y1="19" x2="16" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+      <line x1="1.5" y1="11" x2="1.5" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+      <line x1="22.5" y1="11" x2="22.5" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+      <circle cx="9" cy="13.5" r="1" fill="currentColor"></circle>
+      <circle cx="15" cy="13.5" r="1" fill="currentColor"></circle>
+      <path d="M7 9 L5.5 5.5 M17 9 L18.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+      <line x1="5" y1="5" x2="19" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line>
     </symbol>
     <!-- Tools/Apps -->
     <symbol id="t-vscode" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M23.15 2.587 18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 19.86V4.14a1.5 1.5 0 0 0-.85-1.553zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/>
+      <path fill="currentColor" d="M23.15 2.587 18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 19.86V4.14a1.5 1.5 0 0 0-.85-1.553zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"></path>
     </symbol>
     <symbol id="t-vstudio" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M17.583 0L9.998 8.424 4.79.75.006 2.085v19.83L4.79 23.25l5.208-7.675 7.585 8.425L24 21.504V2.496L17.583 0zM4.79 16.168l-2.619-1.54v-5.26l2.62-1.54 3.882 4.17-3.883 4.17zm12.793 3.337-6-6.505 6-6.505v13.01z"/>
+      <path fill="currentColor" d="M17.583 0L9.998 8.424 4.79.75.006 2.085v19.83L4.79 23.25l5.208-7.675 7.585 8.425L24 21.504V2.496L17.583 0zM4.79 16.168l-2.619-1.54v-5.26l2.62-1.54 3.882 4.17-3.883 4.17zm12.793 3.337-6-6.505 6-6.505v13.01z"></path>
     </symbol>
     <symbol id="t-unity" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M14.578 9.863 12 5.063l-2.578 4.8L12 14.663l2.578-4.8zM9.04 11.048 6.26 15.976H11.7l2.602-4.928-2.602-4.928H6.26l2.78 4.928zm5.92 0 2.78 4.928H12.3l-2.602-4.928L12.3 6.12h5.44L14.96 11.048zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z"/>
+      <path fill="currentColor" d="M14.578 9.863 12 5.063l-2.578 4.8L12 14.663l2.578-4.8zM9.04 11.048 6.26 15.976H11.7l2.602-4.928-2.602-4.928H6.26l2.78 4.928zm5.92 0 2.78 4.928H12.3l-2.602-4.928L12.3 6.12h5.44L14.96 11.048zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z"></path>
     </symbol>
   </svg>
 <div class="terminal-wrap">
@@ -887,17 +951,17 @@
       <div class="dots">
         <div class="dot dot-r" title="Close" onclick="winClose()">
           <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-            <line x1="2" y1="2" x2="8" y2="8"/><line x1="8" y1="2" x2="2" y2="8"/>
+            <line x1="2" y1="2" x2="8" y2="8"></line><line x1="8" y1="2" x2="2" y2="8"></line>
           </svg>
         </div>
         <div class="dot dot-y" title="Minimize" onclick="winMinimize()">
           <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-            <line x1="2" y1="5" x2="8" y2="5"/>
+            <line x1="2" y1="5" x2="8" y2="5"></line>
           </svg>
         </div>
         <div class="dot dot-g" title="Maximize" onclick="winMaximize()" id="btn-maximize">
           <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="2" y="2" width="6" height="6" rx="1"/>
+            <rect x="2" y="2" width="6" height="6" rx="1"></rect>
           </svg>
         </div>
       </div>
@@ -930,41 +994,41 @@
           <div class="bio-stack-group">
             <span class="bio-stack-label">OS</span>
             <div class="bio-stack-icons">
-              <div class="bio-stack-icon" title="Linux"><svg><use href="#t-linux"/></svg><span>Linux</span></div>
-              <div class="bio-stack-icon" title="Windows"><svg><use href="#t-windows"/></svg><span>Windows</span></div>
-              <div class="bio-stack-icon" title="macOS"><svg><use href="#t-mac"/></svg><span>macOS</span></div>
-              <div class="bio-stack-icon" title="Android"><svg><use href="#t-android"/></svg><span>Android</span></div>
+              <div class="bio-stack-icon" title="Linux"><svg><use href="#t-linux"></use></svg><span>Linux</span></div>
+              <div class="bio-stack-icon" title="Windows"><svg><use href="#t-windows"></use></svg><span>Windows</span></div>
+              <div class="bio-stack-icon" title="macOS"><svg><use href="#t-mac"></use></svg><span>macOS</span></div>
+              <div class="bio-stack-icon" title="Android"><svg><use href="#t-android"></use></svg><span>Android</span></div>
             </div>
           </div>
           <div class="bio-stack-divider"></div>
           <div class="bio-stack-group">
             <span class="bio-stack-label">Language</span>
             <div class="bio-stack-icons">
-              <div class="bio-stack-icon" title="Python"><svg><use href="#t-python"/></svg><span>Python</span></div>
-              <div class="bio-stack-icon" title="HTML5"><svg><use href="#t-html"/></svg><span>HTML5</span></div>
-              <div class="bio-stack-icon" title="CSS3"><svg><use href="#t-css"/></svg><span>CSS3</span></div>
-              <div class="bio-stack-icon" title="JavaScript"><svg><use href="#t-js"/></svg><span>JS</span></div>
-              <div class="bio-stack-icon" title="C#"><svg><use href="#t-csharp"/></svg><span>C#</span></div>
+              <div class="bio-stack-icon" title="Python"><svg><use href="#t-python"></use></svg><span>Python</span></div>
+              <div class="bio-stack-icon" title="HTML5"><svg><use href="#t-html"></use></svg><span>HTML5</span></div>
+              <div class="bio-stack-icon" title="CSS3"><svg><use href="#t-css"></use></svg><span>CSS3</span></div>
+              <div class="bio-stack-icon" title="JavaScript"><svg><use href="#t-js"></use></svg><span>JS</span></div>
+              <div class="bio-stack-icon" title="C#"><svg><use href="#t-csharp"></use></svg><span>C#</span></div>
             </div>
           </div>
           <div class="bio-stack-divider"></div>
           <div class="bio-stack-group">
             <span class="bio-stack-label">Stack / App</span>
             <div class="bio-stack-icons">
-              <div class="bio-stack-icon" title="Node.js"><svg><use href="#t-nodejs"/></svg><span>Node.js</span></div>
-              <div class="bio-stack-icon" title="Electron"><svg><use href="#t-electron"/></svg><span>Electron</span></div>
-              <div class="bio-stack-icon" title="VS Code"><svg><use href="#t-vscode"/></svg><span>VS Code</span></div>
-              <div class="bio-stack-icon" title="Visual Studio"><svg><use href="#t-vstudio"/></svg><span>VS Studio</span></div>
-              <div class="bio-stack-icon" title="Unity"><svg><use href="#t-unity"/></svg><span>Unity</span></div>
+              <div class="bio-stack-icon" title="Node.js"><svg><use href="#t-nodejs"></use></svg><span>Node.js</span></div>
+              <div class="bio-stack-icon" title="Electron"><svg><use href="#t-electron"></use></svg><span>Electron</span></div>
+              <div class="bio-stack-icon" title="VS Code"><svg><use href="#t-vscode"></use></svg><span>VS Code</span></div>
+              <div class="bio-stack-icon" title="Visual Studio"><svg><use href="#t-vstudio"></use></svg><span>VS Studio</span></div>
+              <div class="bio-stack-icon" title="Unity"><svg><use href="#t-unity"></use></svg><span>Unity</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <hr class="divider boot-line" />
+      <hr class="divider boot-line">
 
       <div class="links-grid boot-line">
-        <a class="link-item" href="https://webgeeks.org" target="_blank" rel="noopener">
+        <a class="link-item" href="https://webgeeks.org/" target="_blank" rel="noopener">
           <span class="link-icon">🌐</span>
           <span class="link-label">WebGeeks IT</span>
           <span class="link-url">webgeeks.org</span>
@@ -994,7 +1058,7 @@
 
       </div>
 
-      <hr class="divider boot-line" />
+      <hr class="divider boot-line">
 
 <!-- Projects -->
       <div class="section-label">Projects</div>
@@ -1011,11 +1075,11 @@
       <span class="rel-date">Python · Flask · HTML · CSS · JavaScript</span>
     </div>
     <div class="rel-platforms">
-      <span class="rel-chip"><svg><use href="#p-web"/></svg>Web</span><span class="rel-chip"><svg><use href="#t-python"/></svg>Python</span>
+      <span class="rel-chip"><svg><use href="#p-web"></use></svg>Web</span><span class="rel-chip"><svg><use href="#t-python"></use></svg>Python</span>
     </div>
   </a>
 
-  <a class="release-card" href="https://github.com/ImmaGundam/WebGeeks-SystemShield/releases" target="_blank">
+  <a class="release-card has-domain" href="https://github.com/ImmaGundam/WebGeeks-SystemShield/releases" target="_blank">
     <div class="rel-row1">
       <span class="rel-badge gh">Utility</span>
       <span class="rel-name">WebGeeks SystemShield</span>
@@ -1025,12 +1089,15 @@
       <span class="rel-desc">Windows security scanner · Audit reports · System &amp; Network analysis</span>
       <span class="rel-date">Python · HTML · CSS · JavaScript · PowerShell</span>
     </div>
-    <div class="rel-platforms">
-      <span class="rel-chip"><svg><use href="#p-source"/></svg>Source</span><span class="rel-chip"><svg><use href="#p-windows"/></svg>Windows</span>
+    <div class="rel-card-footer">
+      <div class="rel-platforms">
+        <span class="rel-chip"><svg><use href="#p-source"></use></svg>Source</span><span class="rel-chip"><svg><use href="#p-windows"></use></svg>Windows</span>
+      </div>
+      <span class="rel-domain">SystemShield.net</span>
     </div>
   </a>
 
-  <a class="release-card" href="https://github.com/ImmaGundam/SimpleAlarmClock" target="_blank">
+  <a class="release-card has-domain" href="https://github.com/ImmaGundam/SimpleAlarmClock" target="_blank">
     <div class="rel-row1">
       <span class="rel-badge gh">Utility</span>
       <span class="rel-name">Simple Alarm Clock</span>
@@ -1040,12 +1107,15 @@
       <span class="rel-desc">SimpleAlarmClock.com - Free stylized and customizable alarm clock. Available online or as an app.</span>
       <span class="rel-date">HTML · CSS · JavaScript</span>
     </div>
-    <div class="rel-platforms">
-      <span class="rel-chip"><svg><use href="#p-source"/></svg>Source</span><span class="rel-chip"><svg><use href="#p-web"/></svg>Web</span><span class="rel-chip"><svg><use href="#p-windows"/></svg>Windows</span>
+    <div class="rel-card-footer">
+      <div class="rel-platforms">
+        <span class="rel-chip"><svg><use href="#p-source"></use></svg>Source</span><span class="rel-chip"><svg><use href="#p-web"></use></svg>Web</span><span class="rel-chip"><svg><use href="#p-windows"></use></svg>Windows</span>
+      </div>
+      <span class="rel-domain">SimpleAlarmClock.com</span>
     </div>
   </a>
 
-  <a class="release-card" href="https://immagundam.github.io/BoneCrawler/" target="_blank">
+  <a class="release-card has-domain" href="https://immagundam.github.io/BoneCrawler/" target="_blank">
     <div class="rel-row1">
       <span class="rel-badge gh">Game</span>
       <span class="rel-name">BoneCrawler</span>
@@ -1055,14 +1125,33 @@
       <span class="rel-desc">NES Dark-Fantasy Arcade Action</span>
       <span class="rel-date">HTML · CSS · JavaScript</span>
     </div>
-    <div class="rel-platforms">
-      <span class="rel-chip"><svg><use href="#p-source"/></svg>Source</span><span class="rel-chip"><svg><use href="#p-web"/></svg>Web</span><span class="rel-chip"><svg><use href="#p-windows"/></svg>Windows</span>
+    <div class="rel-card-footer">
+      <div class="rel-platforms">
+        <span class="rel-chip"><svg><use href="#p-source"></use></svg>Source</span><span class="rel-chip"><svg><use href="#p-web"></use></svg>Web</span><span class="rel-chip"><svg><use href="#p-windows"></use></svg>Windows</span>
+      </div>
+      <span class="rel-domain">BoneCrawler.com</span>
     </div>
   </a>
 
       <div class="section-label">Lab</div>
 
+  <a class="release-card" href="https://github.com/ImmaGundam/PythOS-shell" target="_blank">
+    <div class="rel-row1">
+      <span class="rel-badge gh">Shell</span>
+      <span class="rel-name">PythOS Shell</span>
+      <span class="rel-ver">v1.0</span>
+    </div>
+    <div class="rel-row2">
+      <span class="rel-desc">A Python-based desktop shell/runtime enviroment.</span>
+      <span class="rel-date">Python</span>
+    </div>
+    <div class="rel-platforms">
+      <span class="rel-chip"><svg><use href="#p-source"></use></svg>Source</span><span class="rel-chip"><svg><use href="#t-python"></use></svg>Python</span>
+    </div>
+  </a>
+
   <a class="release-card" href="https://github.com/ImmaGundam/Windows11-Update-Tool" target="_blank">
+
     <div class="rel-row1">
       <span class="rel-badge gh">Admin</span>
       <span class="rel-name">Windows Update Tool</span>
@@ -1073,7 +1162,7 @@
       <span class="rel-date">Python · HTML · CSS · PowerShell</span>
     </div>
     <div class="rel-platforms">
-      <span class="rel-chip"><svg><use href="#p-source"/></svg>Source</span><span class="rel-chip"><svg><use href="#p-windows"/></svg>Windows</span>
+      <span class="rel-chip"><svg><use href="#p-source"></use></svg>Source</span><span class="rel-chip"><svg><use href="#p-windows"></use></svg>Windows</span>
     </div>
   </a>
 
@@ -1088,7 +1177,7 @@
       <span class="rel-date">Python</span>
     </div>
     <div class="rel-platforms">
-      <span class="rel-chip"><svg><use href="#p-source"/></svg>Source</span>
+      <span class="rel-chip"><svg><use href="#p-source"></use></svg>Source</span>
     </div>
   </a>
 
@@ -1112,13 +1201,13 @@
     </div><!-- /term-body -->
 
     <div class="statusbar">
-      <a href="https://webgeeks.org" class="statusbar-link" target="_blank">webgeeks.org</a>
+      <a href="https://webgeeks.org/" class="statusbar-link" target="_blank">webgeeks.org</a>
       <span class="statusbar-copy">© James Deitz <a href="mailto:immagundam@outlook.com" class="statusbar-email" title="immagundam@outlook.com">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;">
-          <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/>
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="2,4 12,13 22,4"></polyline>
         </svg>
       </a></span>
-      <span id="clock">--:--:--</span>
+      <span id="clock">10:53:36 AM</span>
     </div>
   </div>
 </div>
@@ -1228,18 +1317,19 @@
   <div class="chat-bubble" id="bubble-0">
     <button class="chat-bubble-close" onclick="dismissBubble(0)">✕</button>
     <div class="chat-bubble-header"><div class="chat-bubble-avatar">JD</div><span>James Deitz</span></div>
-    <div class="chat-bubble-text">Don't go! Play my game!<br><a href="https://bonecrawler.com" target="_blank" class="bubble-link">BoneCrawler.com</a></div>
+    <div class="chat-bubble-text">Don't go! Play my game!<br><a href="https://bonecrawler.com/" target="_blank" class="bubble-link">BoneCrawler.com</a></div>
   </div>
   <div class="chat-bubble" id="bubble-1">
     <button class="chat-bubble-close" onclick="dismissBubble(1)">✕</button>
     <div class="chat-bubble-header"><div class="chat-bubble-avatar">JD</div><span>James Deitz</span></div>
-    <div class="chat-bubble-text">Did you check out <a href="https://systemshield.net" target="_blank" class="bubble-link">SystemShield.net</a>?</div>
+    <div class="chat-bubble-text">Did you check out <a href="https://systemshield.net/" target="_blank" class="bubble-link">SystemShield.net</a>?</div>
   </div>
   <div class="chat-bubble" id="bubble-2">
     <button class="chat-bubble-close" onclick="dismissBubble(2)">✕</button>
     <div class="chat-bubble-header"><div class="chat-bubble-avatar">JD</div><span>James Deitz</span></div>
-    <div class="chat-bubble-text">Free alarm clock for the world!<br><a href="https://simplealarmclock.com" target="_blank" class="bubble-link">SimpleAlarmClock.com</a></div>
+    <div class="chat-bubble-text">Free alarm clock for the world!<br><a href="https://simplealarmclock.com/" target="_blank" class="bubble-link">SimpleAlarmClock.com</a></div>
   </div>
 </div>
-</body>
-</html>
+
+
+</body></html>
