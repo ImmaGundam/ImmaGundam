@@ -4,7 +4,6 @@ ImmaGundam/ImmaGundam is a ✨ special ✨ repository because its `README.md` (t
 You can click the Preview link to take a look at your changes.
 --->
 <img src="https://github.com/user-attachments/assets/9fb5e723-1994-466f-a8a1-4ebe3a12dba2"><br>
-- <a href="https://immagundam.github.io/ImmaGundam/portfolio.html">immagundam.github.io/ImmaGundam/portfolio.html</a><br><br>
 - My free SEO Ranking Tool: 
   - <a href="https://systemshield.net/seo-tool">systemshield.net/seo-tool</a>
 <br>
